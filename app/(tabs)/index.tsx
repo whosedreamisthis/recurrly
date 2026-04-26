@@ -13,6 +13,7 @@ import {
 import { icons } from '@/constants/icons';
 import images from '@/constants/images';
 import '@/global.css';
+import { useWebScroll } from '@/hooks/useWebScroll';
 import { formatCurrency } from '@/lib/utils';
 import dayjs from 'dayjs';
 import { useState } from 'react';
@@ -27,9 +28,11 @@ export default function App() {
 	const [expandedSubscriptionId, setExpandedSubscriptionId] = useState<
 		string | null
 	>(null);
+	const flatListRef = useWebScroll();
 	return (
 		<SafeAreaView className="flex-1  bg-background p-5">
 			<FlatList
+				ref={flatListRef}
 				ListHeaderComponent={() => (
 					<>
 						<View className="home-header">
