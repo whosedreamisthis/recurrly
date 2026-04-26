@@ -64,22 +64,6 @@ export default function Index() {
 					<ListHeading title="All Subscriptions"></ListHeading>
 				</View>
 			</View>
-			<View>
-				<ListHeading title="Upcoming" />
-				<FlatList
-					data={UPCOMING_SUBSCRIPTIONS}
-					renderItem={({ item }) => {
-						return <UpcomingSubscriptionCard {...item} />;
-					}}
-					keyExtractor={(item) => item.id}
-					horizontal={true}
-					ListEmptyComponent={
-						<Text className="home-empty-state">
-							no upcoming renewals yet.
-						</Text>
-					}
-				/>
-			</View>
 		</SafeAreaView>
 	);
 }

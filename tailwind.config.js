@@ -52,6 +52,7 @@ module.exports = {
 				24: 96,
 				30: 120,
 				40: 160,
+				46: 184,
 				50: 200, // Matching the min-height just in case
 			},
 			fontFamily: {

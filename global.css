@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'nativewind/theme';
-
 @layer components {
 	.tabs-icon {
 		@apply size-12 items-center justify-center;
