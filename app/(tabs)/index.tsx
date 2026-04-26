@@ -3,8 +3,10 @@ import images from '@/constants/images';
 import { Image } from 'expo-image';
 import { cssInterop } from 'nativewind';
 
-import { HOME_USER } from '@/constants/data';
+import { HOME_BALANCE, HOME_USER } from '@/constants/data';
 import '@/global.css';
+import { formatCurrency } from '@/lib/utils';
+import dayjs from 'dayjs';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -27,6 +29,14 @@ export default function Index() {
 			</View>
 			<View className="home-balance-card">
 				<Text className="home-balance-label">Balance</Text>
+				<View className="home-balance-row">
+					<Text className="home-balance-amount">
+						{formatCurrency(HOME_BALANCE.amount)}
+					</Text>
+					<Text className="home-balance-date">
+						{dayjs(HOME_BALANCE.nextRenewalDate).format('MM/DD')}
+					</Text>
+				</View>
 			</View>
 		</SafeAreaView>
 	);
