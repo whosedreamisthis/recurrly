@@ -1,19 +1,27 @@
-export function formatCurrency(value: number | string, currency: string = 'CAD'): string {
-  try {
-    const numValue = typeof value === 'string' ? parseFloat(value) : value;
-    if (isNaN(numValue)) {
-      throw new Error('Invalid value');
-    }
-    return new Intl.NumberFormat('en-CA', {
-      style: 'currency',
-      currency: currency.toUpperCase(),
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(numValue);
-  } catch (error) {
-    // Fallback: format with two decimal places and currency code
-    const numValue = typeof value === 'string' ? parseFloat(value) : value;
-    const safeValue = isNaN(numValue) ? 0 : numValue;
-    return `${safeValue.toFixed(2)} ${currency.toUpperCase()}`;
-  }
-}
+import dayjs from 'dayjs';
+
+export const formatCurrency = (value: number, currency = 'USD'): string => {
+	try {
+		return new Intl.NumberFormat('en-US', {
+			style: 'currency',
+			currency,
+			minimumFractionDigits: 2,
+			maximumFractionDigits: 2,
+		}).format(value);
+	} catch {
+		return value.toFixed(2);
+	}
+};
+
+export const formatSubscriptionDateTime = (value?: string): string => {
+	if (!value) return 'Not provided';
+	const parsedDate = dayjs(value);
+	return parsedDate.isValid()
+		? parsedDate.format('MM/DD/YYYY')
+		: 'Not provided';
+};
+
+export const formatStatusLabel = (value?: string): string => {
+	if (!value) return 'Unknown';
+	return value.charAt(0).toUpperCase() + value.slice(1);
+};

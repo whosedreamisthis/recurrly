@@ -4,15 +4,18 @@ import { Image } from 'expo-image';
 import { cssInterop } from 'nativewind';
 
 import ListHeading from '@/components/ListHeading';
+import SubscriptionCard from '@/components/SubscriptionCard';
 import UpcomingSubscriptionCard from '@/components/UpcomingSubscriptionCard';
 import {
 	HOME_BALANCE,
+	HOME_SUBSCRIPTIONS,
 	HOME_USER,
 	UPCOMING_SUBSCRIPTIONS,
 } from '@/constants/data';
 import '@/global.css';
 import { formatCurrency } from '@/lib/utils';
 import dayjs from 'dayjs';
+import { useState } from 'react';
 import { FlatList, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -20,7 +23,10 @@ cssInterop(Image, {
 	className: 'style',
 });
 
-export default function Index() {
+export default function App() {
+	const [expandedSubscriptionId, setExpandedSubscriptionId] = useState<
+		string | null
+	>(null);
 	return (
 		<SafeAreaView className="flex-1  bg-background p-5">
 			<View className="home-header">
@@ -61,7 +67,30 @@ export default function Index() {
 					/>
 				</View>
 				<View>
-					<ListHeading title="All Subscriptions"></ListHeading>
+					<ListHeading title="All Subscriptions" />
+					<FlatList
+						data={HOME_SUBSCRIPTIONS}
+						keyExtractor={(item) => item.id}
+						renderItem={({ item }) => (
+							<SubscriptionCard
+								{...item}
+								expanded={expandedSubscriptionId === item.id}
+								onPress={() =>
+									setExpandedSubscriptionId((currentId) =>
+										currentId === item.id ? null : item.id,
+									)
+								}
+							/>
+						)}
+						extraData={expandedSubscriptionId}
+						ItemSeparatorComponent={() => <View className="h-4" />}
+						showsVerticalScrollIndicator={false}
+						ListEmptyComponent={
+							<Text className="home-empty-state">
+								No subscriptions yet.
+							</Text>
+						}
+					/>
 				</View>
 			</View>
 		</SafeAreaView>
