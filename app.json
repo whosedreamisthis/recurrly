@@ -22,14 +22,11 @@
 			"predictiveBackGestureEnabled": false
 		},
 		"web": {
-			"output": "static",
-			"favicon": "./assets/images/favicon.png"
+			"output": "single",
+			"favicon": "./assets/images/favicon.png",
+			"bundler": "metro"
 		},
-		"expo": {
-			"web": {
-				"bundler": "metro"
-			}
-		},
+
 		"plugins": [
 			"expo-router",
 			[

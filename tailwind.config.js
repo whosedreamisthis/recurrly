@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	// IMPORTANT: Fixes the color scheme crash we saw earlier
+	// IMPORTANT: Fixes the color scheme crash and handles theme switching
 	darkMode: 'class',
 	content: [
 		'./App.{js,ts,tsx}',
@@ -23,26 +23,35 @@ module.exports = {
 				destructive: '#dc2626',
 				subscription: '#8fd1bd',
 			},
+			// Added this section to support your .home-balance-card
+			borderRadius: {
+				'4xl': 32,
+			},
+			// Added this section so min-h-50 works in @apply
+			minHeight: {
+				50: 200,
+			},
 			spacing: {
-				0: '0px',
-				1: '4px',
-				2: '8px',
-				3: '12px',
-				4: '16px',
-				5: '20px',
-				6: '24px',
-				7: '28px',
-				8: '32px',
-				9: '36px',
-				10: '40px',
-				11: '44px',
-				12: '48px',
-				14: '56px',
-				16: '64px',
-				18: '72px',
-				20: '80px',
-				24: '96px',
-				30: '120px',
+				0: 0,
+				1: 4,
+				2: 8,
+				3: 12,
+				4: 16,
+				5: 20,
+				6: 24,
+				7: 28,
+				8: 32,
+				9: 36,
+				10: 40,
+				11: 44,
+				12: 48,
+				14: 56,
+				16: 64,
+				18: 72,
+				20: 80,
+				24: 96,
+				30: 120,
+				50: 200, // Matching the min-height just in case
 			},
 			fontFamily: {
 				sans: ['sans-regular'],
